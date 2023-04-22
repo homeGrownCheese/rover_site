@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div>
+        <!--A form for selecting the sol and camera, the camera will be a dropdown and the sol will be a number-->
+{% csrf_token %}
+        <form action="" method="get">
+            <label for="sol">Sol</label>
+
+            
+            <input type="number" name="sol" id="sol" value="{{ request.GET.sol|default:'1' }}">
+
+            <!--input page number selection-->
+            <label for="page">Page</label>
+            <input type="number" name="page" id="page" value="{{ request.GET.page|default:'1' }}">
+            <label for="camera">Camera</label>
+            <select name="camera" id="camera">
+                <option value="all">All</option>
+                <option value="fhaz">Front Hazard Avoidance Camera</option>
+                <option value="rhaz">Rear Hazard Avoidance Camera</option>
+                <option value="mast">Mast Camera</option>
+                <option value="chemcam">Chemistry and Camera Complex</option>
+                <option value="mahli">Mars Hand Lens Imager</option>
+                <option value="mardi">Mars Descent Imager</option>
+                <option value="navcam">Navigation Camera</option>
+                <option value="pancam">Panoramic Camera</option>
+                <option value="minites">Miniature Thermal Emission Spectrometer (Mini-TES)</option>
+            </select>
+            <input type="submit" value="Submit">
+            <!--give an option for a user to enter an api key, this will be saved as a cookie-->
+            <label for="api_key">API Key</label>
+            <input type="text" name="api_key" id="api_key" value="{{ request.GET.api_key|default:'' }}">
+        </form>
+
+    </div>
+    <div>
+        <!--Display all data from the api response in a list using django and not php-->
+        {% for item in data.photos %}
+        <p>{{ item.sol }}</p>
+        <p>{{ item.camera.full_name }}</p>
+        <p>{{ item.earth_date }}</p>
+        <img src="{{ item.img_src }}" alt="">
+        {% endfor %}
+    </div>
+
+
+
+
+
+
+
+</body>
+
+</html>
