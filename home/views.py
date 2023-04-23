@@ -41,4 +41,11 @@ def home(request):
 
     data = requests.get(url).json()
 
-    return render(request, "home/index.html", {"data": data})
+    return render(
+        request,
+        "home/index.html",
+        {
+            "data": data,
+            "remaining": remaining,
+        },
+    )
