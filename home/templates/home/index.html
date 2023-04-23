@@ -72,21 +72,27 @@
             </form>
         </div>
 
-        <div class="row">
-  {% for item in data.photos %}
-    <div class="col-md-4">
-      <div class="thumbnail">
-        <a href="{{ item.img_src }}" target="_blank">
-          <img src="{{ item.img_src }}" alt="">
-        </a>
-        <div class="caption">
-          <p>{{ item.sol }}</p>
-          <p>{{ item.camera.full_name }}</p>
-          <p>{{ item.earth_date }}</p>
+{% if data.photos %}
+  <div class="row">
+    {% for item in data.photos %}
+      <div class="col-md-4">
+        <div class="thumbnail">
+          <a href="{{ item.img_src }}" target="_blank">
+            <img src="{{ item.img_src }}" alt="">
+          </a>
+          <div class="caption">
+            <p>{{ item.sol }}</p>
+            <p>{{ item.camera.full_name }}</p>
+            <p>{{ item.earth_date }}</p>
+          </div>
         </div>
       </div>
-    </div>
-  {% endfor %}
+    {% endfor %}
+  </div>
+{% else %}
+  <p>No photos taken this sol</p>
+{% endif %}
+
 </div>
 </div>
 
