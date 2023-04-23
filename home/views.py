@@ -29,6 +29,8 @@ def home(request):
     camera = request.GET.get("camera", "fhaz")
     page = request.GET.get("page", 1)
 
+    # in case the user has an invalid api key or the cookie is invalid, try to search using theirs first, then fall back to the default
+
     if camera == "all":
         url = f"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol={sol}&page={page}&api_key={api_key}"
     else:
@@ -40,6 +42,8 @@ def home(request):
     print(f"Remaining requests: {remaining}")
 
     data = requests.get(url).json()
+    if data == []:
+        print("No photos found")
 
     return render(
         request,
