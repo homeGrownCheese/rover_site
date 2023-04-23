@@ -42,7 +42,7 @@ def home(request):
     print(f"Remaining requests: {remaining}")
 
     data = requests.get(url).json()
-    if data == []:
+    if data == {}:
         print("No photos found")
 
     return render(
