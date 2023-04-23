@@ -44,6 +44,13 @@ if not IS_HEROKU:
     DEBUG = True
 
 
+# Deployment on Heroku
+if IS_HEROKU:
+    SECURE_SSL_REDIRECT = True
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
+
 # Application definition
 
 INSTALLED_APPS = [
