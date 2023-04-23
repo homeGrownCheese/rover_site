@@ -1,1 +1,1 @@
-web: gunicorn rover_site.core.wsgi
+web: gunicorn core.wsgi
