@@ -32,7 +32,7 @@ def home(request):
     if camera == "all":
         url = f"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol={sol}&page={page}&api_key={api_key}"
     else:
-        url = f"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol={sol}&camera={camera}&page=1&api_key={api_key}"
+        url = f"https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol={sol}&camera={camera}&page={page}&api_key={api_key}"
     # make a request to the NASA API
     # print the headers
     headers = requests.get(url).headers

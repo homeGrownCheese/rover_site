@@ -8,7 +8,7 @@
     <title>Rover Photo Viewer</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-
+<!-- Clarity Tag -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
         c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -28,7 +28,7 @@
             <form action="" method="get">
                 <div class="form-group col-md-3">
                     <label for="sol">Sol</label>
-                    <input type="number" name="sol" id="sol" class="form-control" value="{{ request.GET.sol|default:'1' }}">
+                    <input type="number" name="sol" id="sol" class="form-control" value="{{ request.GET.sol|default:'1000' }}">
                 </div>
                 <div class="form-group col-md-3">
                     <!--input page number selection-->
