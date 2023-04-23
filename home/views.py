@@ -36,10 +36,8 @@ def home(request):
     # make a request to the NASA API
     # print the headers
     headers = requests.get(url).headers
-    print(
-        headers["X-RateLimit-Remaining"],
-    )
-    print(headers)
+    remaining = headers["X-RateLimit-Remaining"]
+    print(f"Remaining requests: {remaining}")
 
     data = requests.get(url).json()
 
