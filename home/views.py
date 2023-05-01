@@ -14,15 +14,18 @@ API_KEY = os.getenv("API_KEY")
 
 
 def home(request):
-    # check if the API key is present in the form data
-    if "api_key" in request.GET:
-        # save the API key to a cookie
-        api_key = request.GET["api_key"]
-        response = render(request, "home/index.html")
-        response.set_cookie("api_key", api_key)
+    # If the request is a post request, then the user has submitted the form for their api key, and it needs to be saved in a session
+    if request.method == "POST":
+        api_key = request.POST.get("api_key")
+        request.session["api_key"] = api_key
+        print(f"api_key: {api_key}")
 
-    # load the API key from the cookie or use the default key
-    api_key = request.COOKIES.get("api_key", os.getenv("API_KEY"))
+    # if the user has a session, use their api key, otherwise use the default
+    if "api_key" in request.session:
+        api_key = request.session["api_key"]
+        print("Using session api key")
+    else:
+        api_key = API_KEY
 
     # get the users selections for sol and camera from the form
     sol = request.GET.get("sol", 1000)
@@ -38,6 +41,7 @@ def home(request):
     # make a request to the NASA API
     # print the headers
     headers = requests.get(url).headers
+    print(headers)
     remaining = headers["X-RateLimit-Remaining"]
     print(f"Remaining requests: {remaining}")
 
